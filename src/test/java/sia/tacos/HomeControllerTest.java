@@ -13,11 +13,11 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import sia.tacos.web.HomeController;
+import sia.tacos.web.WebConfig;
 
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(HomeController.class)   // <1>
+@WebMvcTest(WebConfig.class)   // <1>
 public class HomeControllerTest {
     @Autowired
     private MockMvc mockMvc;
