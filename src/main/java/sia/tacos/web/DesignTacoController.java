@@ -53,7 +53,7 @@ public class DesignTacoController {
     public void addIngredientsToModel(Model model) {
         List<Ingredient> ingredients = new ArrayList<>();
         this.ingredientRepo.findAll().forEach(i -> ingredients.add(i));
-        log.info("" + ingredients);
+        // log.info("" + ingredients);
         Type[] types = Ingredient.Type.values();
         for (Type type : types) {
             model.addAttribute(type.toString().toLowerCase(), filterByType(ingredients, type));
