@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -20,6 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 import sia.tacos.data.Ingredient;
 import sia.tacos.data.Order;
 import sia.tacos.data.Taco;
+import sia.tacos.data.User;
 import sia.tacos.data.Ingredient.Type;
 import sia.tacos.repository.IngredientRepository;
 import sia.tacos.repository.TacoRepository;
@@ -61,7 +63,10 @@ public class DesignTacoController {
     }
 
     @GetMapping
-    public String showDesignForm(Model model) {
+    public String showDesignForm(Model model, @AuthenticationPrincipal User user) {
+        log.info("   --- Designing taco");
+        log.info("user: " + user);
+        model.addAttribute("user", user);
         return "design";
     }
 

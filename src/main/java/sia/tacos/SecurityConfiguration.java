@@ -20,16 +20,16 @@ public class SecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .antMatchers("/design", "/orders")
-                    .hasRole("USER")
-                .antMatchers("/", "/**").permitAll()
+                .antMatchers("/design", "/orders").access("hasRole('ROLE_USER')")
+                .antMatchers("/", "/**").access("permitAll")
+            .and()
+                .formLogin().loginPage("/login")
+            .and()
+                .logout().logoutSuccessUrl("/")
             ;
-        
-        http.formLogin().loginPage("/login");
-        http.logout().logoutSuccessUrl("/");
-
-        // for h2database...
-        http.csrf().ignoringAntMatchers("/h2-console/**");
+        // http.cors().and().csrf().ignoringAntMatchers("/h2-console/**");
+        // http.csrf().ignoringAntMatchers("/h2-console/**");
+        http.csrf().disable();
         http.headers().frameOptions().sameOrigin();
         http.userDetailsService(userDetailService);
         return http.build();

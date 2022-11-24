@@ -10,16 +10,13 @@
     <h1>Design your taco!</h1>
     <img th:src="@{/images/TacoCloud.png}" />
 
+    <form method="POST" th:action="@{/logout}" id="logoutForm">
+        <input type="submit" value="Logout" />
+    </form>
+
     <form method="POST" th:object="${taco}">
-        <span class="validationError" 
-            th:if="${#fields.hasErrors('ingredients')}" th:errors="*{ingredients}">Ingredients Error</span>
-            
-            <!-- <div th:if="${#fields.hasAnyErrors()}">
-                <ul>
-                    <li th:each="err : ${#fields.allErrors()}" th:text="${err}" />
-                </ul>
-            </div> -->
-            
+        <span class="validationError" th:if="${#fields.hasErrors('ingredients')}" th:errors="*{ingredients}">Ingredients
+            Error</span>
 
         <div class="grid">
             <div class="ingredient-group" id="wraps">
