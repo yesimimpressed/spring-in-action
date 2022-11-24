@@ -1,4 +1,4 @@
-package sia.tacos.web;
+package sia.tacos.controller;
 
 import javax.validation.Valid;
 
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import lombok.extern.slf4j.Slf4j;
-import sia.tacos.Order;
-import sia.tacos.data.OrderRepository;
+import sia.tacos.data.Order;
+import sia.tacos.repository.OrderRepository;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

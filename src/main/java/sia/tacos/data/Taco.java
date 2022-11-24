@@ -1,4 +1,4 @@
-package sia.tacos;
+package sia.tacos.data;
 
 import java.util.Date;
 import java.util.List;

@@ -1,4 +1,4 @@
-package sia.tacos;
+package sia.tacos.data;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

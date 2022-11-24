@@ -1,9 +1,8 @@
-package sia.tacos.security;
+package sia.tacos.data;
 
-// import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import lombok.Data;
-import sia.tacos.User;
 
 @Data
 public class RegistrationForm {
@@ -17,8 +16,8 @@ public class RegistrationForm {
     private String zip;
     private String phone;
 
-    public User toUser() {
-        return new User(username, password, fullname, street, city, state, zip, phone);
+    public User toUser(PasswordEncoder passwordEncoder) {
+        return new User(username, passwordEncoder.encode(password), fullname, street, city, state, zip, phone);
     }
 
 }

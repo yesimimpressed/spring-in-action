@@ -1,21 +1,25 @@
-package sia.tacos.security;
+package sia.tacos.controller;
 
+import org.springframework.beans.factory.parsing.PassThroughSourceExtractor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import sia.tacos.data.UserRepository;
+import sia.tacos.data.RegistrationForm;
+import sia.tacos.repository.UserRepository;
 
 @Controller
 @RequestMapping("/register")
 public class RegistrationController {
 
     private UserRepository userRepo;
+    private PasswordEncoder passwordEncoder;
 
-    public RegistrationController(UserRepository userRepo) {
+    public RegistrationController(UserRepository userRepo, PasswordEncoder passwordEncoder) {
         this.userRepo = userRepo;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping
@@ -25,7 +29,7 @@ public class RegistrationController {
 
     @PostMapping
     public String processRegistration(RegistrationForm form) {
-        userRepo.save(form.toUser());
+        userRepo.save(form.toUser(passwordEncoder));
         return "redirect:/login";
     }
 
