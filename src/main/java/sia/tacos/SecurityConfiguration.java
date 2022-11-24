@@ -27,9 +27,7 @@ public class SecurityConfiguration {
             .and()
                 .logout().logoutSuccessUrl("/")
             ;
-        // http.cors().and().csrf().ignoringAntMatchers("/h2-console/**");
-        // http.csrf().ignoringAntMatchers("/h2-console/**");
-        http.csrf().disable();
+        http.csrf().ignoringAntMatchers("/h2-console/**");
         http.headers().frameOptions().sameOrigin();
         http.userDetailsService(userDetailService);
         return http.build();
